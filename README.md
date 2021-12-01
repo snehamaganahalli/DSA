@@ -9,7 +9,7 @@
 
 2) Install necessary libraries:
 
-**sudo apt-get install libssl-dev
+**sudo apt-get install libssl-dev**
 
 **sudo apt-get install libgmp3-dev**
 
