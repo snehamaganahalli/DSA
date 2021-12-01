@@ -1,26 +1,28 @@
 # DSA
-Digital Signature Algorithm Implementation
+**Digital Signature Algorithm Implementation**
 
-Steps:
+**Steps:**
 
 1) Sync the code to local:
 
-git clone https://github.com/snehamaganahalli/DSA.git
+**git clone https://github.com/snehamaganahalli/DSA.git**
 
 2) Install necessary libraries:
 
-sudo apt-get install libssl-dev
+**sudo apt-get install libssl-dev
 
-sudo apt-get install libgmp3-dev
+sudo apt-get install libgmp3-dev**
 
 3) Compile the code
 
-gcc dsa.c  -lssl -lcrypto -lgmp
+**gcc dsa.c  -lssl -lcrypto -lgmp**
 
 4) Run
-./a.out
+
+**./a.out**
 
 =============================================
+
 **Sample Output:**
 
 
