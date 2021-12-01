@@ -11,7 +11,7 @@
 
 **sudo apt-get install libssl-dev
 
-sudo apt-get install libgmp3-dev**
+**sudo apt-get install libgmp3-dev**
 
 3) Compile the code
 
