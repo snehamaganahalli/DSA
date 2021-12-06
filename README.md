@@ -42,9 +42,13 @@ Enter 1 to sign and 0 to verify:0
 
 Verifying!!!!!!!!!!!!!!!!!
 
-Enter S1,S2,m(Plain Text(number))
+Enter S1,S2
 
-18,73,123
+18,73  (Type same signature which sender has sent)
+
+Enter the message(number) to be verified
+
+123 (Type same message which sender has sent)
 
 v: 18
 
@@ -54,9 +58,13 @@ Enter 1 to sign and 0 to verify:0
 
 Verifying!!!!!!!!!!!!!!!!!
 
-Enter S1,S2,m(Plain Text(number))
+Enter S1,S2
 
-1,1,1
+1,1 (Type some different signature than what sender has signed)
+
+Enter the message(number) to be verified
+
+1   (Type some diffrent messgae than what sender has sent)
 
 v: 43
 
