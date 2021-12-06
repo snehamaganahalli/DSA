@@ -64,7 +64,7 @@ Enter S1,S2
 
 Enter the message(number) to be verified
 
-1   (Type some diffrent messgae than what sender has sent)
+1   (Type some diffrent message than what sender has sent)
 
 v: 43
 
