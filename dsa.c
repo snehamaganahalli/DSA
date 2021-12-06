@@ -10,28 +10,21 @@
 #include <stdio_ext.h>
 
 mpz_t p, m, q, e0, e1, e2, d, r, s1, s2, p_minus_1_div_q, hm, ds1, v, s2_inv, e1_p, e2_p, r_inv, s_1;
+unsigned char obuf[200];
+char input[100];
 
-int fun()
+unsigned char* fun()
 {
-    unsigned char ibuf[] = "12";
-    unsigned char obuf[20];
-
-    SHA1(ibuf, strlen(ibuf), obuf);
-
-    int i;
-    for (i = 0; i < 20; i++) {
-        printf("%02d", obuf[i]);
-    }
-    printf("\n");
-
-    return 0;
+  memset(obuf, 0, 100);
+  SHA1(input, strlen(input), obuf);
 }
 
 void signing()
 {
+  unsigned char *hm_str;
+
   /* Signing Algorithm */
   mpz_set_ui(p, 8081);
-
   mpz_set_ui(q, 101);
   mpz_set_ui(e0, 3);
   mpz_sub_ui(p_minus_1_div_q, p, 1);
@@ -47,10 +40,13 @@ void signing()
   mpz_mod(s1, s1, q);
 
   gmp_printf("Enter a message(number)  to sign\n");
-  gmp_scanf("%Zd", m);
-
+  fgets(input, 100, stdin);
+  mpz_set_str(hm, input, 10);
   mpz_mul(ds1, d, s1);
-  mpz_add(s2, ds1, m); //considering message itself as the digest.
+  fun();
+
+  mpz_set_str(hm, obuf, 10);
+  mpz_add(s2, ds1, hm);
   mpz_invert(r_inv, r, q);
   mpz_mul(s2, s2, r_inv);
   mpz_mod(s2, s2, q);
@@ -61,12 +57,18 @@ void signing()
 void verifying()
 {
   mpz_inits(s_1, NULL);
-  gmp_printf("\nEnter S1,S2,m(Plain Text(number))\n");
-  gmp_scanf("%Zd,%Zd,%Zd", s_1,s2,m);
+  gmp_printf("\nEnter S1,S2\n");
+  gmp_scanf("%Zd,%Zd,%Zd", s_1,s2);
+  gmp_printf("\nEnter the message(number) to be verified\n");
+  memset(input, 0, 100);
+  __fpurge(stdin);
+  fgets(input, 100, stdin);
+  mpz_set_str(hm, input, 10);
+  fun();
 
   /* Verifying */
   mpz_invert(s2_inv, s2, q);
-  mpz_mul(e1_p, m, s2_inv);
+  mpz_mul(e1_p, hm, s2_inv);
   mpz_mod(e1_p, e1_p, q);
   mpz_pow_ui(e1_p, e1, mpz_get_ui(e1_p));
 
